@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="vendors/jquery/jquery.js"></script>
+        <script src="vendors/modernizr/modernizr.js"></script>
+        <script src="vendors/SwatchBook/jquery.swatchbook.js"></script>
+        <script src="vendors/angular/angular.js"></script>
+        <script src="vendors/perfect-scrollbar/perfect-scrollbar-0.4.9.with-mousewheel.min.js"></script>
+
+        <script src="js/app.js"></script>
+        <link rel="stylesheet" href="vendors/SwatchBook/css/style3.css">
+        <link rel="stylesheet" href="vendors/animate.css/animate.css">
+        <link rel="stylesheet" href="vendors/ModernBlockQuoteStyle/css/style3.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="vendors/perfect-scrollbar/perfect-scrollbar-0.4.9.min.css">
+
+    </head>
+    <body data-ng-app="JwSwatch" data-ng-controller="HomeController" stylex="background-image:url('{{getSelectedSingle().artwork_url}}')">
+
+        <section class="main">
+
+            <div id="sb-container" class="sb-container">
+
+                <div data-ng-repeat="single in singles | orderBy: 'id': 1"
+                     data-ng-dblclick="play(single)"
+                     data-ng-click="selectSingle(single)" >
+                    <span class="animated rotateIn">
+                        <img data-ng-src="{{single.artwork_url}}" alt="">
+                    </span>
+                    <h4><span>{{single.title}}</span></h4>
+                </div>
+
+            </div>
+
+
+        </section>
+
+        <div ng-if="false">
+            <div id='Demo'>
+                <p>
+                    {{getSelectedSingle().description}}
+                </p>
+            </div>
+        </div>
+
+        <section class="animaged fadeIn" ng-if="singles.length">
+            <div class="mb-wrap mb-style-3">
+
+                <blockquote cite="http://www.gutenberg.org/ebooks/1260" id="Demo">
+                    <p>
+                        {{getSelectedSingle().description}}
+                    </p>
+                </blockquote>
+
+
+                <div class="mb-attribution">
+                    <p class="mb-author">{{getSelectedSingle().title}}</p>
+
+                    <div class="favorite">
+                        <img src="images/star.png" alt="">
+                        <span>
+                            {{getSelectedSingle().favoritings_count}}
+                        </span>
+
+                    </div>
+
+                    <cite><a href="">{{getSelectedSingle().user.username}}</a></cite>
+                    <div class="circular">
+                        <img data-ng-src="{{getSelectedSingle().artwork_url}}" alt="" ng-class="{ 'animated rotateIn': animate }">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </body>
+</html>
